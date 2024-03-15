@@ -16,10 +16,15 @@ import { openLink } from "@/utils/utility";
       <div class="flex align-items-center">
         <i
           @click="openLink('https://github.com/DomeT99/app-repo')"
-          class="pi pi-github"
+          class="pi pi-github pointer"
           style="font-size: 1.5rem; margin-right: 1.5rem"
         />
       </div>
     </template>
   </MegaMenu>
 </template>
+<style scoped>
+.pointer{
+  cursor: pointer;
+}
+</style>
