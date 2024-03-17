@@ -20,7 +20,6 @@
     "vue-router": "^4.3.0"
   },
   "devDependencies": {
-    "@vite-pwa/nuxt": "^0.6.0",
     "nuxt-primevue": "^0.3.1"
   }
 }
