@@ -8,6 +8,14 @@
       <label>Platform</label>
       <CommonComboBox />
     </div>
+    <div class="flex flex-1 flex-row justify-content-end mt-4">
+      <Button
+        icon="pi pi-plus"
+        label="Add new tool"
+        severity="danger"
+        class="w-full lg:w-2"
+      />
+    </div>
   </section>
 
   <section
