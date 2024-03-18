@@ -11,5 +11,6 @@ export default defineNuxtConfig({
   css: [
     "primevue/resources/themes/lara-dark-amber/theme.css",
     "primeicons/primeicons.css",
+    "/node_modules/primeflex/primeflex.css",
   ],
 });

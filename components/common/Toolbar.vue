@@ -24,7 +24,7 @@ import { openLink } from "@/utils/utility";
   </MegaMenu>
 </template>
 <style scoped>
-.pointer{
+.pointer {
   cursor: pointer;
 }
 </style>

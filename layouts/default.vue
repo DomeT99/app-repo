@@ -1,13 +1,7 @@
 <template>
   <CommonToolbar />
-  <section class="min-h-80">
+  <section class="min-h-screen">
     <slot />
   </section>
   <CommonFooter />
 </template>
-
-<style scoped>
-.min-h-80 {
-  min-height: 80vh;
-}
-</style>
