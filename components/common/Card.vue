@@ -1,8 +1,17 @@
+<script setup lang="ts">
+import { type Card } from "../../types/components";
+import { openLink } from "@/utils/utility";
+
+defineProps<{
+  data: Card;
+}>();
+</script>
+
 <template>
-  <Card style="overflow: hidden">
+  <Card style="overflow: hidden" :id="data.id">
     <template #title>
       <section class="flex">
-        <div class="flex-1">Joplin</div>
+        <div class="flex-1">{{ data.title }}</div>
         <div>
           <i class="pi pi-pencil cursor-pointer"></i> &nbsp;
           <i class="pi pi-trash text-red-600 cursor-pointer"></i>
@@ -11,20 +20,19 @@
     </template>
     <template #subtitle>
       <section class="flex gap-1 mt-4">
-        <Badge severity="secondary" value="Android" />
-        <Badge severity="secondary" value="MacOS" />
-        <Badge severity="secondary" value="Windows" />
-        <Badge severity="secondary" value="iOS" />
-        <Badge severity="secondary" value="Linux" />
+        <div v-for="platform in data.platforms" :key="platform">
+          <Badge severity="secondary" :value="platform" />
+        </div>
       </section>
     </template>
     <template #content>
-      <p>Fantastico editor markdown per la creazione di siti web</p>
+      <p>{{ data.description }}</p>
     </template>
     <template #footer>
       <section class="flex justify-content-center gap-3">
         <div class="flex-1 align-items-center justify-content-center">
           <Button
+            @click="openLink(data.website!)"
             label="Website"
             severity="secondary"
             outlined
@@ -32,7 +40,11 @@
           />
         </div>
         <div class="flex-1 align-items-center justify-content-center">
-          <Button label="Source Code" class="w-full" />
+          <Button
+            @click="openLink(data.repository!)"
+            label="Source Code"
+            class="w-full"
+          />
         </div>
       </section>
     </template>

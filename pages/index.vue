@@ -6,7 +6,13 @@
     </div>
     <div class="flex flex-column gap-2">
       <label>Platform</label>
-      <CommonComboBox />
+      <CommonComboBox
+        :data="{
+          options: [{ key: 'iOS' }, { key: 'Android' }],
+          maxSelectedLabels: 32,
+          placeholder: 'string',
+        }"
+      />
     </div>
     <div class="flex flex-1 flex-row justify-content-end mt-4">
       <Button
@@ -22,16 +28,14 @@
     class="flex lg:flex-row flex-column justify-content-center gap-4 m-3 mt-6 mb-6"
   >
     <div class="flex-auto">
-      <CommonCard />
-    </div>
-    <div class="flex-auto">
-      <CommonCard />
-    </div>
-    <div class="flex-auto">
-      <CommonCard />
-    </div>
-    <div class="flex-auto">
-      <CommonCard />
+      <CommonCard
+        :data="{
+          id: '1',
+          title: 'Google',
+          description: 'Search engine',
+          platforms: ['iOS', 'Android'],
+        }"
+      />
     </div>
   </section>
 </template>
