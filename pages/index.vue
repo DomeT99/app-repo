@@ -2,15 +2,23 @@
   <section class="flex lg:flex-row flex-column m-3 mt-6 mb-6 gap-4">
     <div class="flex flex-column gap-2">
       <label>Keyword</label>
-      <CommonInputText />
+      <CommonInputText
+        :data="{ placeholder: 'Search for keyword', model: '' }"
+      />
     </div>
     <div class="flex flex-column gap-2">
       <label>Platform</label>
       <CommonComboBox
         :data="{
-          options: [{ key: 'iOS' }, { key: 'Android' }],
-          maxSelectedLabels: 32,
-          placeholder: 'string',
+          options: [
+            { key: 'iOS', value: 'iOS' },
+            { key: 'Android', value: 'Android' },
+            { key: 'Linux', value: 'Linux' },
+            { key: 'MacOS', value: 'MacOS' },
+            { key: 'Windows', value: 'Windows' },
+          ],
+          maxSelectedLabels: 5,
+          placeholder: 'Search for platform',
         }"
       />
     </div>
