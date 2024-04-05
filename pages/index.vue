@@ -1,4 +1,17 @@
+<script setup lang="ts">
+const visible = ref(false);
+</script>
+
 <template>
+  <CommonModal
+    :data="{
+      visible: visible,
+      title: 'Deleting ',
+      content: 'Are you sure you want to delete this item?',
+      confirmLabel: 'Delete',
+      confirm: () => {},
+    }"
+  />
   <section class="flex lg:flex-row flex-column m-3 mt-6 mb-6 gap-4">
     <div class="flex flex-column gap-2">
       <label>Keyword</label>

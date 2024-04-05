@@ -22,3 +22,11 @@ export type InputText = {
   model: any;
   placeholder: string;
 };
+
+export type Modal = {
+  title: string;
+  content: string;
+  visible?: boolean;
+  confirmLabel: string;
+  confirm: () => void;
+};
