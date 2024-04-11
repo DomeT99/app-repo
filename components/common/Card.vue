@@ -37,6 +37,7 @@ defineProps<{
             severity="secondary"
             outlined
             class="w-full"
+            :disabled="data.website == undefined || data.website == ''"
           />
         </div>
         <div class="flex-1 align-items-center justify-content-center">
@@ -44,6 +45,7 @@ defineProps<{
             @click="openLink(data.repository!)"
             label="Source Code"
             class="w-full"
+            :disabled="data.repository == undefined || data.repository == ''"
           />
         </div>
       </section>

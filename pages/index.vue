@@ -1,4 +1,12 @@
 <script setup lang="ts">
+import { useAppStore } from "~/store/appStore";
+
+const { getAppList, appList } = useAppStore();
+
+if (appList.length == 0) {
+  await getAppList();
+}
+
 const visible = ref(false);
 </script>
 
@@ -48,13 +56,15 @@ const visible = ref(false);
   <section
     class="flex lg:flex-row flex-column justify-content-center gap-4 m-3 mt-6 mb-6"
   >
-    <div class="flex-auto">
+    <div class="flex-auto" v-for="app in appList" :key="app.id">
       <CommonCard
         :data="{
-          id: '1',
-          title: 'Google',
-          description: 'Search engine',
-          platforms: ['iOS', 'Android'],
+          id: app.id,
+          title: app.title,
+          description: app.description,
+          platforms: app.platforms,
+          website: app.website,
+          repository: app.repository,
         }"
       />
     </div>
