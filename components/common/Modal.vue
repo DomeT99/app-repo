@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { type Modal } from "../../types/components";
- 
+
 defineProps<{
   data: Modal;
 }>();
@@ -23,7 +23,7 @@ defineProps<{
         text
         severity="secondary"
         autofocus
-        @click="data.visible = false"
+        @click="data.close()"
       />
       <Button
         outlined

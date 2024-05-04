@@ -7,6 +7,7 @@ export const useAppStore = defineStore("app", () => {
   let _appListOriginal = ref<Card[]>([]);
   let appList = ref<Card[]>([]);
   let filters = ref<Filter>({ keyword: "" });
+  let currentApp = ref<Card>({} as Card);
 
   async function getAppList() {
     try {
@@ -19,6 +20,10 @@ export const useAppStore = defineStore("app", () => {
     } catch (e) {
       console.log(e);
     }
+  }
+
+  function setCurrentApp(app: Card) {
+    currentApp.value = app;
   }
 
   function setFilters(filter: Filter) {
@@ -45,5 +50,13 @@ export const useAppStore = defineStore("app", () => {
     );
   }
 
-  return { appList, _appListOriginal, filters, getAppList, setFilters };
+  return {
+    appList,
+    _appListOriginal,
+    filters,
+    currentApp,
+    getAppList,
+    setFilters,
+    setCurrentApp,
+  };
 });

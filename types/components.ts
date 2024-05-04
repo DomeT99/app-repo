@@ -5,6 +5,7 @@ export type Card = {
   description: string;
   website?: string;
   repository?: string;
+  deleteFn?: () => void;
 };
 
 export type ComboBox = {
@@ -28,4 +29,5 @@ export type Modal = {
   visible?: boolean;
   confirmLabel: string;
   confirm: () => void;
+  close: () => void;
 };

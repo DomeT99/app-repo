@@ -1,17 +1,19 @@
 <script setup lang="ts">
 import { useAppComposable } from "~/composables/useAppComposable";
 
-const { visible, appStore, changeInputText } = await useAppComposable();
+const { modalStore, appStore, changeInputText, setStateDeleteModal } =
+  await useAppComposable();
 </script>
 
 <template>
   <CommonModal
     :data="{
-      visible: visible,
+      visible: modalStore.visibleDeleteModal,
       title: 'Deleting',
       content: 'Are you sure you want to delete this item?',
       confirmLabel: 'Delete',
       confirm: () => {},
+      close: () => setStateDeleteModal(),
     }"
   />
   <section class="flex lg:flex-row flex-column m-3 mt-6 mb-6 gap-4">
@@ -44,6 +46,7 @@ const { visible, appStore, changeInputText } = await useAppComposable();
           platforms: app.platforms,
           website: app.website,
           repository: app.repository,
+          deleteFn: () => setStateDeleteModal(app),
         }"
       />
     </div>

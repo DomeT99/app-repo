@@ -1,7 +1,9 @@
 import { useAppStore } from "~/store/appStore";
+import { useModalStore } from "~/store/modalStore";
+import type { Card } from "~/types/components";
 export const useAppComposable = async () => {
   const appStore = useAppStore();
-  const platformModel = ref<string[]>([]);
+  const modalStore = useModalStore();
 
   if (appStore.appList.length == 0) {
     await appStore.getAppList();
@@ -11,7 +13,15 @@ export const useAppComposable = async () => {
     appStore.setFilters({ keyword: event.target!.value });
   }
 
-  const visible = ref(false);
+  function setStateDeleteModal(currentApp?: Card) {
+    modalStore.handleDeleteModal();
 
-  return { changeInputText, visible, appStore, platformModel };
+    if (isUndefined(currentApp)) {
+      appStore.setCurrentApp({} as Card);
+    } else {
+      appStore.setCurrentApp(currentApp!);
+    }
+  }
+
+  return { changeInputText, setStateDeleteModal, modalStore, appStore };
 };

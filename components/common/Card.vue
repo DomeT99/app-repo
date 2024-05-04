@@ -13,8 +13,12 @@ defineProps<{
       <section class="flex">
         <div class="flex-1">{{ data.title }}</div>
         <div>
-          <i class="pi pi-pencil cursor-pointer"></i> &nbsp;
-          <i class="pi pi-trash text-red-600 cursor-pointer"></i>
+          <i class="pi pi-pencil cursor-pointer"></i>
+          &nbsp;
+          <i
+            class="pi pi-trash text-red-600 cursor-pointer"
+            @click="data.deleteFn!()"
+          ></i>
         </div>
       </section>
     </template>
