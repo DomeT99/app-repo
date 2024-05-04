@@ -1,4 +1,3 @@
 export type Filter = {
-    keyword?: string;
-    platforms?: string[];
+  keyword?: string;
 };

@@ -6,7 +6,7 @@ import { isUndefined, isEmptyString } from "~/utils/utility";
 export const useAppStore = defineStore("app", () => {
   let _appListOriginal = ref<Card[]>([]);
   let appList = ref<Card[]>([]);
-  let filters = ref<Filter>({ keyword: "", platforms: [] });
+  let filters = ref<Filter>({ keyword: "" });
 
   async function getAppList() {
     try {
@@ -26,14 +26,6 @@ export const useAppStore = defineStore("app", () => {
       filters.value.keyword = filter.keyword;
     }
 
-    // if (!isUndefined(filter.platforms) && !isEmptyArray(filter.platforms!)) {
-    //   filter.platforms?.forEach((x) => {
-    //     if (!filters.value.platforms?.includes(x.value)) {
-    //       filters.value.platforms?.push(x.value);
-    //     }
-    //   });
-    // }
-
     if (!isEmptyString(filters.value.keyword!)) {
       _searchApp();
     } else {
@@ -42,37 +34,15 @@ export const useAppStore = defineStore("app", () => {
   }
 
   function _resetFilters() {
-    filters.value = { keyword: "", platforms: [] };
+    filters.value = { keyword: "" };
 
     appList.value = _appListOriginal.value;
   }
 
   function _searchApp() {
-    if (
-      !isEmptyString(filters.value.keyword!) &&
-      !isUndefined(filters.value.keyword)
-    ) {
-      appList.value = _appListOriginal.value.filter((x) =>
-        x.title.toLowerCase().includes(filters.value.keyword!.toLowerCase())
-      );
-    } else {
-      appList.value = _appListOriginal.value.filter(
-        (x) =>
-          x.title
-            .toLowerCase()
-            .includes(filters.value.keyword!.toLowerCase()) &&
-          x.platforms.some((y: string) => filters.value.platforms!.includes(y))
-      );
-    }
-
-    // else if (
-    //   !isUndefined(filters.value.platforms) &&
-    //   !isEmptyArray(filters.value.platforms!)
-    // ) {
-    //   appList.value = _appListOriginal.value.filter((x) =>
-    //     x.platforms.some((y: string) => filters.value.platforms!.includes(y))
-    //   );
-    // }
+    appList.value = _appListOriginal.value.filter((x) =>
+      x.title.toLowerCase().includes(filters.value.keyword!.toLowerCase())
+    );
   }
 
   return { appList, _appListOriginal, filters, getAppList, setFilters };

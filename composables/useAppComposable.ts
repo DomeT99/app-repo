@@ -7,10 +7,6 @@ export const useAppComposable = async () => {
     await appStore.getAppList();
   }
 
-  // function changeComboBox() {
-  //   appStore.setFilters({ platforms: platformModel.value });
-  // }
-
   function changeInputText(event: Event) {
     appStore.setFilters({ keyword: event.target!.value });
   }

@@ -24,25 +24,6 @@ const { visible, appStore, changeInputText } = await useAppComposable();
         @input="(e:Event) => changeInputText(e)"
       />
     </div>
-    <!-- <div class="flex flex-column gap-2">
-      <label>Platform</label>
-      <CommonComboBox
-        v-model="platformModel"
-        :data="{
-          options: [
-            { key: 'iOS', value: 'iOS' },
-            { key: 'Android', value: 'Android' },
-            { key: 'Linux', value: 'Linux' },
-            { key: 'MacOS', value: 'MacOS' },
-            { key: 'Windows', value: 'Windows' },
-          ],
-          maxSelectedLabels: 5,
-          placeholder: 'Search for platform',
-        }"
-        ,
-        @change="changeComboBox"
-      />
-    </div> -->
     <div class="flex flex-1 flex-row justify-content-end mt-4">
       <Button
         icon="pi pi-plus"
@@ -53,10 +34,8 @@ const { visible, appStore, changeInputText } = await useAppComposable();
     </div>
   </section>
 
-  <section
-    class="flex lg:flex-row flex-column justify-content-center gap-4 m-3 mt-6 mb-6"
-  >
-    <div class="flex-auto" v-for="app in appStore.appList" :key="app.id">
+  <section class="grid m-3 mt-6 mb-6">
+    <div class="lg:col-3 col-12" v-for="app in appStore.appList" :key="app.id">
       <CommonCard
         :data="{
           id: app.id,
