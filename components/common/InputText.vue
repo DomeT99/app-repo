@@ -7,5 +7,5 @@ defineProps<{
 </script>
 
 <template>
-  <InputText :placeholder="data.placeholder" type="text" v-model="data.model" />
+  <InputText :placeholder="data.placeholder" type="text" />
 </template>

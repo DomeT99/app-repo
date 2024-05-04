@@ -1,20 +1,14 @@
 <script setup lang="ts">
-import { useAppStore } from "~/store/appStore";
+import { useAppComposable } from "~/composables/useAppComposable";
 
-const { getAppList, appList } = useAppStore();
-
-if (appList.length == 0) {
-  await getAppList();
-}
-
-const visible = ref(false);
+const { visible, appStore, changeInputText } = await useAppComposable();
 </script>
 
 <template>
   <CommonModal
     :data="{
       visible: visible,
-      title: 'Deleting ',
+      title: 'Deleting',
       content: 'Are you sure you want to delete this item?',
       confirmLabel: 'Delete',
       confirm: () => {},
@@ -24,12 +18,16 @@ const visible = ref(false);
     <div class="flex flex-column gap-2">
       <label>Keyword</label>
       <CommonInputText
-        :data="{ placeholder: 'Search for keyword', model: '' }"
+        :data="{
+          placeholder: 'Search for keyword',
+        }"
+        @input="(e:Event) => changeInputText(e)"
       />
     </div>
-    <div class="flex flex-column gap-2">
+    <!-- <div class="flex flex-column gap-2">
       <label>Platform</label>
       <CommonComboBox
+        v-model="platformModel"
         :data="{
           options: [
             { key: 'iOS', value: 'iOS' },
@@ -41,8 +39,10 @@ const visible = ref(false);
           maxSelectedLabels: 5,
           placeholder: 'Search for platform',
         }"
+        ,
+        @change="changeComboBox"
       />
-    </div>
+    </div> -->
     <div class="flex flex-1 flex-row justify-content-end mt-4">
       <Button
         icon="pi pi-plus"
@@ -56,7 +56,7 @@ const visible = ref(false);
   <section
     class="flex lg:flex-row flex-column justify-content-center gap-4 m-3 mt-6 mb-6"
   >
-    <div class="flex-auto" v-for="app in appList" :key="app.id">
+    <div class="flex-auto" v-for="app in appStore.appList" :key="app.id">
       <CommonCard
         :data="{
           id: app.id,

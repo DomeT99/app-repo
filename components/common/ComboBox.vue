@@ -8,7 +8,6 @@ defineProps<{
 
 <template>
   <MultiSelect
-    v-model="data.model"
     :placeholder="data.placeholder"
     :options="data.options"
     :maxSelectedLabels="data.maxSelectedLabels"

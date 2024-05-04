@@ -19,7 +19,6 @@ type Option = {
 };
 
 export type InputText = {
-  model: any;
   placeholder: string;
 };
 
