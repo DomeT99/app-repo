@@ -22,6 +22,21 @@ export const useAppStore = defineStore("app", () => {
     }
   }
 
+  async function deleteApp() {
+    try {
+      const { data } = await useFetch(
+        `/api/appController/delete/${currentApp.value.id}`,
+        {
+          method: "DELETE",
+        }
+      );
+
+      return data;
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
   function setCurrentApp(app: Card) {
     currentApp.value = app;
   }
@@ -36,6 +51,13 @@ export const useAppStore = defineStore("app", () => {
     } else {
       _resetFilters();
     }
+  }
+
+  function resetState() {
+    filters.value = { keyword: "" };
+    appList.value = [];
+    _appListOriginal.value = [];
+    currentApp.value = {} as Card;
   }
 
   function _resetFilters() {
@@ -56,7 +78,9 @@ export const useAppStore = defineStore("app", () => {
     filters,
     currentApp,
     getAppList,
+    deleteApp,
     setFilters,
     setCurrentApp,
+    resetState,
   };
 });

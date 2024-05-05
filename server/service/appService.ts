@@ -1,5 +1,5 @@
 import { db } from "../../firebase/config";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, deleteDoc, doc } from "firebase/firestore";
 import { Card } from "~/types/components";
 
 export async function tryGetList(): Promise<Card[] | undefined> {
@@ -25,6 +25,14 @@ export async function tryGetList(): Promise<Card[] | undefined> {
     }
 
     return appList;
+  } catch (e) {
+    console.log(e);
+  }
+}
+
+export async function tryDeleteApp(id: string) {
+  try {
+    await deleteDoc(doc(db, `/Application/${id}`));
   } catch (e) {
     console.log(e);
   }

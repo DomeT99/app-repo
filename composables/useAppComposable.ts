@@ -23,5 +23,21 @@ export const useAppComposable = async () => {
     }
   }
 
-  return { changeInputText, setStateDeleteModal, modalStore, appStore };
+  async function deleteApplication() {
+    const result = await appStore.deleteApp();
+
+    if (result) {
+      appStore.resetState();
+      setStateDeleteModal();
+      await appStore.getAppList();
+    }
+  }
+
+  return {
+    changeInputText,
+    setStateDeleteModal,
+    deleteApplication,
+    modalStore,
+    appStore,
+  };
 };

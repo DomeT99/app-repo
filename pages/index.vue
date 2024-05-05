@@ -1,8 +1,13 @@
 <script setup lang="ts">
 import { useAppComposable } from "~/composables/useAppComposable";
 
-const { modalStore, appStore, changeInputText, setStateDeleteModal } =
-  await useAppComposable();
+const {
+  modalStore,
+  appStore,
+  changeInputText,
+  setStateDeleteModal,
+  deleteApplication,
+} = await useAppComposable();
 </script>
 
 <template>
@@ -10,9 +15,9 @@ const { modalStore, appStore, changeInputText, setStateDeleteModal } =
     :data="{
       visible: modalStore.visibleDeleteModal,
       title: 'Deleting',
-      content: 'Are you sure you want to delete this item?',
+      content: `Are you sure you want to delete ${appStore.currentApp.title}?`,
       confirmLabel: 'Delete',
-      confirm: () => {},
+      confirm: async () => await deleteApplication(),
       close: () => setStateDeleteModal(),
     }"
   />
