@@ -16,11 +16,13 @@ export const useAppComposable = async () => {
   function setStateDeleteModal(currentApp?: Card) {
     modalStore.handleDeleteModal();
 
-    if (isUndefined(currentApp)) {
-      appStore.setCurrentApp({} as Card);
-    } else {
-      appStore.setCurrentApp(currentApp!);
-    }
+    _setCurrentApp(currentApp);
+  }
+
+  function setStateHandleDataModal(currentApp?: Card) {
+    modalStore.handleDataModal();
+
+    _setCurrentApp(currentApp);
   }
 
   async function deleteApplication() {
@@ -33,10 +35,19 @@ export const useAppComposable = async () => {
     }
   }
 
+  function _setCurrentApp(currentApp?: Card) {
+    if (isUndefined(currentApp)) {
+      appStore.setCurrentApp({} as Card);
+    } else {
+      appStore.setCurrentApp(currentApp!);
+    }
+  }
+
   return {
     changeInputText,
     setStateDeleteModal,
     deleteApplication,
+    setStateHandleDataModal,
     modalStore,
     appStore,
   };

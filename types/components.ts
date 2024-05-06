@@ -6,6 +6,7 @@ export type Card = {
   website?: string;
   repository?: string;
   deleteFn?: () => void;
+  editFn?: () => void;
 };
 
 export type ComboBox = {

@@ -7,10 +7,12 @@ const {
   changeInputText,
   setStateDeleteModal,
   deleteApplication,
+  setStateHandleDataModal,
 } = await useAppComposable();
 </script>
 
 <template>
+  <HomePageHandleDataModal />
   <CommonModal
     :data="{
       visible: modalStore.visibleDeleteModal,
@@ -37,6 +39,7 @@ const {
         label="Add new tool"
         severity="danger"
         class="w-full lg:w-2"
+        @click="modalStore.handleDataModal()"
       />
     </div>
   </section>
@@ -52,6 +55,7 @@ const {
           website: app.website,
           repository: app.repository,
           deleteFn: () => setStateDeleteModal(app),
+          editFn: () => setStateHandleDataModal(app),
         }"
       />
     </div>
