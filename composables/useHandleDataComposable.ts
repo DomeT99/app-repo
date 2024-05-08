@@ -10,5 +10,15 @@ export const useHandleDataComposable = () => {
     appStore.setCurrentApp({} as Card);
   }
 
-  return { modalStore, appStore, handleDataModal };
+  async function addNewApp() {
+    let result = appStore.addApp();
+
+    if (result != undefined) {
+      appStore.resetState();
+      handleDataModal();
+      await appStore.getAppList();
+    }
+  }
+
+  return { modalStore, appStore, handleDataModal, addNewApp };
 };

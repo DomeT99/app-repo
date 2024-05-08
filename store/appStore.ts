@@ -8,6 +8,7 @@ export const useAppStore = defineStore("app", () => {
   let appList = ref<Card[]>([]);
   let filters = ref<Filter>({ keyword: "" });
   let currentApp = ref<Card>({} as Card);
+  let currentAppOriginal = ref<Card>({} as Card);
 
   async function getAppList() {
     try {
@@ -17,6 +18,24 @@ export const useAppStore = defineStore("app", () => {
         _appListOriginal.value.push(app);
         appList.value.push(app);
       });
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  async function addApp() {
+    try {
+      currentAppOriginal.value = {
+        ...currentApp.value,
+        platforms: _setPlatforms(currentApp.value.platforms),
+      };
+      
+      const { data } = await useFetch("/api/appController/post/app", {
+        method: "POST",
+        body: currentAppOriginal.value,
+      });
+
+      return data;
     } catch (e) {
       console.log(e);
     }
@@ -72,6 +91,14 @@ export const useAppStore = defineStore("app", () => {
     );
   }
 
+  function _setPlatforms(currentPlatforms?: any) {
+    let platforms: string[] = [];
+
+    currentPlatforms.map((platform: any) => platforms.push(platform.key));
+
+    return platforms;
+  }
+
   return {
     appList,
     _appListOriginal,
@@ -82,5 +109,6 @@ export const useAppStore = defineStore("app", () => {
     setFilters,
     setCurrentApp,
     resetState,
+    addApp,
   };
 });

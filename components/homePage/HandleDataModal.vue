@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useHandleDataComposable } from "~/composables/useHandleDataComposable";
 
-const { modalStore, appStore, handleDataModal } = useHandleDataComposable();
+const { modalStore, appStore, handleDataModal, addNewApp } = useHandleDataComposable();
 </script>
 
 <template>
@@ -87,6 +87,7 @@ const { modalStore, appStore, handleDataModal } = useHandleDataComposable();
         label="Save"
         text
         class="p-3 w-full text-primary-50 border-1 border-white-alpha-30 hover:bg-white-alpha-10"
+        @click="addNewApp"
       ></Button>
     </div>
   </Dialog>

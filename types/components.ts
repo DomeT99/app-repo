@@ -1,10 +1,5 @@
-export type Card = {
-  id: string;
-  title: string;
-  platforms: string[];
-  description: string;
-  website?: string;
-  repository?: string;
+import type { App } from "./generic";
+export type Card = App & {
   deleteFn?: () => void;
   editFn?: () => void;
 };
