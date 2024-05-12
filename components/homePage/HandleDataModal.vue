@@ -9,9 +9,7 @@ const { modalStore, appStore, handleDataModal, addNewApp, editCurrentApp } =
   <Dialog
     v-model:visible="modalStore.visibleHandleDataModal"
     modal
-    :header="
-      appStore.currentApp.title != undefined ? 'Edit tool' : 'Add new tool'
-    "
+    :header="modalStore.isEditMode ? 'Edit tool' : 'Add new tool'"
     :style="{ width: '50rem' }"
     :breakpoints="{ '1199px': '75vw', '575px': '90vw' }"
   >
@@ -82,13 +80,13 @@ const { modalStore, appStore, handleDataModal, addNewApp, editCurrentApp } =
         label="Close"
         text
         class="p-3 w-full text-primary-50 border-1 border-white-alpha-30 hover:bg-white-alpha-10"
-        @click="handleDataModal"
+        @click="handleDataModal(false)"
       ></Button>
       <Button
         label="Save"
         text
         class="p-3 w-full text-primary-50 border-1 border-white-alpha-30 hover:bg-white-alpha-10"
-        @click="editCurrentApp"
+        @click="modalStore.isEditMode ? editCurrentApp() : addNewApp()"
       ></Button>
     </div>
   </Dialog>

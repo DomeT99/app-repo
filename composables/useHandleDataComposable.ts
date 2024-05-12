@@ -5,8 +5,8 @@ export const useHandleDataComposable = () => {
   const appStore = useAppStore();
   const modalStore = useModalStore();
 
-  function handleDataModal() {
-    modalStore.handleDataModal();
+  function handleDataModal(editMode: boolean) {
+    modalStore.handleDataModal(editMode);
     appStore.setCurrentApp({} as Card);
   }
 
@@ -15,7 +15,7 @@ export const useHandleDataComposable = () => {
 
     if (result != undefined) {
       appStore.resetState();
-      handleDataModal();
+      handleDataModal(false);
       await appStore.getAppList();
     }
   }
@@ -25,7 +25,7 @@ export const useHandleDataComposable = () => {
 
     if (result != undefined) {
       appStore.resetState();
-      handleDataModal();
+      handleDataModal(true);
       await appStore.getAppList();
     }
   }

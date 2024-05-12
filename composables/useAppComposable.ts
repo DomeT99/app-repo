@@ -11,7 +11,8 @@ export const useAppComposable = async () => {
   }
 
   function changeInputText(event: Event) {
-    appStore.setFilters({ keyword: event.target!.value });
+    const inputElement = event.target as HTMLInputElement;
+    appStore.setFilters({ keyword: inputElement.value });
   }
 
   function setStateDeleteModal(currentApp?: App) {
@@ -21,7 +22,7 @@ export const useAppComposable = async () => {
   }
 
   function setStateHandleDataModal(currentApp?: App) {
-    modalStore.handleDataModal();
+    modalStore.handleDataModal(true);
 
     _setCurrentApp(currentApp);
   }

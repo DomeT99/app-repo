@@ -39,7 +39,7 @@ const {
         label="Add new tool"
         severity="danger"
         class="w-full lg:w-2"
-        @click="modalStore.handleDataModal()"
+        @click="modalStore.handleDataModal(false)"
       />
     </div>
   </section>

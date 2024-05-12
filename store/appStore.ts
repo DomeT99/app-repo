@@ -145,7 +145,7 @@ export const useAppStore = defineStore("app", () => {
     appList,
     _appListOriginal,
     filters,
-    currentApp,
+    currentApp, 
     getAppList,
     deleteApp,
     setFilters,
