@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 import type { Card } from "~/types/components";
 import type { Filter } from "~/types/store";
-import { isUndefined, isEmptyString } from "~/utils/utility";
+import { isUndefined, isEmptyString, isEmptyObject } from "~/utils/utility";
 
 export const useAppStore = defineStore("app", () => {
   let _appListOriginal = ref<Card[]>([]);
@@ -56,7 +56,30 @@ export const useAppStore = defineStore("app", () => {
     }
   }
 
+  async function editApp() {
+    try {
+      currentAppOriginal.value = {
+        ...currentApp.value,
+        platforms: _setPlatformsKey(currentApp.value.platforms),
+      };
+
+      const { data } = await useFetch("/api/appController/put/app", {
+        method: "PUT",
+        body: currentAppOriginal.value,
+      });
+
+      return data;
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
   function setCurrentApp(app: Card) {
+    if (isEmptyObject(app)) {
+      currentApp.value = app;
+      return;
+    }
+
     currentApp.value = {
       ...app,
       platforms: _setPlatformsValue(app),
@@ -129,5 +152,6 @@ export const useAppStore = defineStore("app", () => {
     setCurrentApp,
     resetState,
     addApp,
+    editApp,
   };
 });

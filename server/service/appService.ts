@@ -1,10 +1,11 @@
 import { db } from "../../firebase/config";
 import {
+  doc,
   collection,
   getDocs,
-  deleteDoc,
-  doc,
   addDoc,
+  updateDoc,
+  deleteDoc,
 } from "firebase/firestore";
 import { App } from "~/types/generic";
 
@@ -48,6 +49,24 @@ export async function tryAddApp(app: App) {
   try {
     let result = await addDoc(collection(db, "Application"), app);
     return result.id;
+  } catch (e) {
+    console.log(e);
+  }
+}
+
+export async function tryEditApp(app: App) {
+  try {
+    let docRef = doc(db, "Application", app.id);
+
+    await updateDoc(docRef, {
+      title: app.title,
+      platforms: app.platforms,
+      description: app.description,
+      website: app.website,
+      repository: app.repository,
+    });
+
+    return true;
   } catch (e) {
     console.log(e);
   }

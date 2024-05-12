@@ -29,3 +29,10 @@ export function isEmptyArray<T>(value: T[]): boolean {
   }
   return false;
 }
+
+export function isEmptyObject<T>(value: T): boolean {
+  if (Object.keys(value!).length === 0) {
+    return true;
+  }
+  return false;
+}
