@@ -77,6 +77,7 @@ export const useAppStore = defineStore("app", () => {
     appList.value = [];
     _appListOriginal.value = [];
     currentApp.value = {} as Card;
+    currentAppOriginal.value = {} as Card;
   }
 
   function _resetFilters() {
