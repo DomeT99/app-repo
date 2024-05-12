@@ -27,9 +27,9 @@ export const useAppStore = defineStore("app", () => {
     try {
       currentAppOriginal.value = {
         ...currentApp.value,
-        platforms: _setPlatforms(currentApp.value.platforms),
+        platforms: _setPlatformsKey(currentApp.value.platforms),
       };
-      
+
       const { data } = await useFetch("/api/appController/post/app", {
         method: "POST",
         body: currentAppOriginal.value,
@@ -57,7 +57,10 @@ export const useAppStore = defineStore("app", () => {
   }
 
   function setCurrentApp(app: Card) {
-    currentApp.value = app;
+    currentApp.value = {
+      ...app,
+      platforms: _setPlatformsValue(app),
+    };
   }
 
   function setFilters(filter: Filter) {
@@ -92,10 +95,25 @@ export const useAppStore = defineStore("app", () => {
     );
   }
 
-  function _setPlatforms(currentPlatforms?: any) {
+  function _setPlatformsKey(currentPlatforms?: any) {
     let platforms: string[] = [];
 
     currentPlatforms.map((platform: any) => platforms.push(platform.key));
+
+    return platforms;
+  }
+
+  function _setPlatformsValue(app: Card) {
+    let platforms: any[] = [];
+
+    app.platforms.map((platform: any) => {
+      let platformObj = {
+        key: platform,
+        value: platform,
+      };
+
+      platforms.push(platformObj);
+    });
 
     return platforms;
   }
