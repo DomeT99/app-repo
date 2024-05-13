@@ -1,13 +1,13 @@
 import { useAppStore } from "~/store/appStore";
-import { useModalStore } from "~/store/modalStore";
-import type { Card } from "~/types/components";
+import { useModalStore } from "~/store/modalStore"; 
+import type { App } from "~/types/generic";
 export const useHandleDataComposable = () => {
   const appStore = useAppStore();
   const modalStore = useModalStore();
 
   function handleDataModal(editMode: boolean) {
     modalStore.handleDataModal(editMode);
-    appStore.setCurrentApp({} as Card);
+    appStore.setCurrentApp({} as App);
   }
 
   async function addNewApp() {

@@ -1,5 +1,6 @@
 import { defineStore } from "pinia";
-import type { Card } from "~/types/components";
+import type { Card, Option } from "~/types/components";
+import type { App } from "~/types/generic";
 import type { Filter } from "~/types/store";
 import { isUndefined, isEmptyString, isEmptyObject } from "~/utils/utility";
 
@@ -7,8 +8,8 @@ export const useAppStore = defineStore("app", () => {
   let _appListOriginal = ref<Card[]>([]);
   let appList = ref<Card[]>([]);
   let filters = ref<Filter>({ keyword: "" });
-  let currentApp = ref<Card>({} as Card);
-  let currentAppOriginal = ref<Card>({} as Card);
+  let currentApp = ref<App>({} as App);
+  let currentAppOriginal = ref<App>({} as App);
 
   async function getAppList() {
     try {
@@ -30,7 +31,9 @@ export const useAppStore = defineStore("app", () => {
       if (checkForm) {
         currentAppOriginal.value = {
           ...currentApp.value,
-          platforms: _setPlatformsKey(currentApp.value.platforms),
+          platforms: _setPlatformsKey(
+            currentApp.value.platforms as unknown as Option[]
+          ),
         };
 
         const { data } = await useFetch("/api/appController/post/app", {
@@ -69,7 +72,9 @@ export const useAppStore = defineStore("app", () => {
       if (checkForm) {
         currentAppOriginal.value = {
           ...currentApp.value,
-          platforms: _setPlatformsKey(currentApp.value.platforms),
+          platforms: _setPlatformsKey(
+            currentApp.value.platforms as unknown as Option[]
+          ),
         };
 
         const { data } = await useFetch("/api/appController/put/app", {
@@ -86,7 +91,7 @@ export const useAppStore = defineStore("app", () => {
     }
   }
 
-  function setCurrentApp(app: Card) {
+  function setCurrentApp(app: App) {
     if (isEmptyObject(app)) {
       currentApp.value = app;
       return;
@@ -94,7 +99,7 @@ export const useAppStore = defineStore("app", () => {
 
     currentApp.value = {
       ...app,
-      platforms: _setPlatformsValue(app),
+      platforms: _setPlatformsValue(app) as unknown as string[],
     };
   }
 
@@ -114,8 +119,8 @@ export const useAppStore = defineStore("app", () => {
     filters.value = { keyword: "" };
     appList.value = [];
     _appListOriginal.value = [];
-    currentApp.value = {} as Card;
-    currentAppOriginal.value = {} as Card;
+    currentApp.value = {} as App;
+    currentAppOriginal.value = {} as App;
   }
 
   function _resetFilters() {
@@ -130,19 +135,19 @@ export const useAppStore = defineStore("app", () => {
     );
   }
 
-  function _setPlatformsKey(currentPlatforms?: any) {
+  function _setPlatformsKey(currentPlatforms?: Option[]) {
     let platforms: string[] = [];
 
-    currentPlatforms.map((platform: any) => platforms.push(platform.key));
+    currentPlatforms!.map((platform: Option) => platforms.push(platform.key));
 
     return platforms;
   }
 
   function _setPlatformsValue(app: Card) {
-    let platforms: any[] = [];
+    let platforms: Option[] = [];
 
-    app.platforms.map((platform: any) => {
-      let platformObj = {
+    app.platforms.map((platform: string) => {
+      let platformObj: Option = {
         key: platform,
         value: platform,
       };

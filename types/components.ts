@@ -10,7 +10,7 @@ export type ComboBox = {
   maxSelectedLabels?: number;
   placeholder?: string;
 };
-type Option = {
+export type Option = {
   key: string;
   value: string;
 };

@@ -41,9 +41,9 @@ export const useAppComposable = async () => {
     }
   }
 
-  function _setCurrentApp(currentApp?: Card) {
+  function _setCurrentApp(currentApp?: App) {
     if (isUndefined(currentApp)) {
-      appStore.setCurrentApp({} as Card);
+      appStore.setCurrentApp({} as App);
     } else {
       appStore.setCurrentApp(currentApp!);
     }
