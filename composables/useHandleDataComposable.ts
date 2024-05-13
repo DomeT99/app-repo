@@ -11,22 +11,26 @@ export const useHandleDataComposable = () => {
   }
 
   async function addNewApp() {
-    let result = appStore.addApp();
+    let result = await appStore.addApp();
 
-    if (result != undefined) {
+    if (result) {
       appStore.resetState();
       handleDataModal(false);
       await appStore.getAppList();
+    } else {
+      modalStore.handleErrorModal();
     }
   }
 
   async function editCurrentApp() {
-    let result = appStore.editApp();
+    let result = await appStore.editApp();
 
-    if (result != undefined) {
+    if (result) {
       appStore.resetState();
       handleDataModal(true);
       await appStore.getAppList();
+    } else {
+      modalStore.handleErrorModal();
     }
   }
 

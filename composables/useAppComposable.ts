@@ -27,6 +27,10 @@ export const useAppComposable = async () => {
     _setCurrentApp(currentApp);
   }
 
+  function setErrorModal() {
+    modalStore.handleErrorModal();
+  }
+
   async function deleteApplication() {
     const result = await appStore.deleteApp();
 
@@ -50,6 +54,7 @@ export const useAppComposable = async () => {
     setStateDeleteModal,
     deleteApplication,
     setStateHandleDataModal,
+    setErrorModal,
     modalStore,
     appStore,
   };

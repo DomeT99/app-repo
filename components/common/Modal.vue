@@ -10,8 +10,9 @@ defineProps<{
   <Dialog
     v-model:visible="data.visible"
     modal
+    :position="data.position ?? 'center'"
     :header="data.title"
-    :style="{ width: '50vw' }"
+    :style="{ width: data.width ?? '25vw' }"
     :breakpoints="{ '1199px': '75vw', '575px': '90vw' }"
   >
     <p class="m-0">
@@ -25,13 +26,15 @@ defineProps<{
         autofocus
         @click="data.close()"
       />
-      <Button
-        outlined
-        severity="secondary"
-        autofocus
-        :label="data.confirmLabel"
-        @click="data.confirm"
-      />
+      <template v-if="data.confirm != undefined">
+        <Button
+          outlined
+          severity="secondary"
+          autofocus
+          :label="data.confirmLabel"
+          @click="data.confirm"
+        />
+      </template>
     </template>
   </Dialog>
 </template>

@@ -8,11 +8,21 @@ const {
   setStateDeleteModal,
   deleteApplication,
   setStateHandleDataModal,
+  setErrorModal
 } = await useAppComposable();
 </script>
 
 <template>
   <HomePageHandleDataModal />
+  <CommonModal
+    :data="{
+      visible: modalStore.visibleErrorModal,
+      position:'top',
+      title: 'Warning',
+      content: `Fields marked with an asterisk are required`,
+      close: () => setErrorModal(),
+    }"
+  />
   <CommonModal
     :data="{
       visible: modalStore.visibleDeleteModal,

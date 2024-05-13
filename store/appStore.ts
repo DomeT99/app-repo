@@ -25,17 +25,23 @@ export const useAppStore = defineStore("app", () => {
 
   async function addApp() {
     try {
-      currentAppOriginal.value = {
-        ...currentApp.value,
-        platforms: _setPlatformsKey(currentApp.value.platforms),
-      };
+      let checkForm = _validateForm();
 
-      const { data } = await useFetch("/api/appController/post/app", {
-        method: "POST",
-        body: currentAppOriginal.value,
-      });
+      if (checkForm) {
+        currentAppOriginal.value = {
+          ...currentApp.value,
+          platforms: _setPlatformsKey(currentApp.value.platforms),
+        };
 
-      return data;
+        const { data } = await useFetch("/api/appController/post/app", {
+          method: "POST",
+          body: currentAppOriginal.value,
+        });
+
+        return data;
+      } else {
+        return checkForm;
+      }
     } catch (e) {
       console.log(e);
     }
@@ -58,17 +64,23 @@ export const useAppStore = defineStore("app", () => {
 
   async function editApp() {
     try {
-      currentAppOriginal.value = {
-        ...currentApp.value,
-        platforms: _setPlatformsKey(currentApp.value.platforms),
-      };
+      let checkForm = _validateForm();
 
-      const { data } = await useFetch("/api/appController/put/app", {
-        method: "PUT",
-        body: currentAppOriginal.value,
-      });
+      if (checkForm) {
+        currentAppOriginal.value = {
+          ...currentApp.value,
+          platforms: _setPlatformsKey(currentApp.value.platforms),
+        };
 
-      return data;
+        const { data } = await useFetch("/api/appController/put/app", {
+          method: "PUT",
+          body: currentAppOriginal.value,
+        });
+
+        return data;
+      } else {
+        return checkForm;
+      }
     } catch (e) {
       console.log(e);
     }
@@ -141,11 +153,29 @@ export const useAppStore = defineStore("app", () => {
     return platforms;
   }
 
+  function _validateForm() {
+    if (
+      isUndefined(currentApp.value.platforms) ||
+      isEmptyArray(currentApp.value.platforms)
+    ) {
+      return false;
+    }
+
+    if (
+      isUndefined(currentApp.value.title) ||
+      isEmptyString(currentApp.value.title)
+    ) {
+      return false;
+    }
+
+    return true;
+  }
+
   return {
     appList,
     _appListOriginal,
     filters,
-    currentApp, 
+    currentApp,
     getAppList,
     deleteApp,
     setFilters,

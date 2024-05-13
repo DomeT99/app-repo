@@ -22,8 +22,22 @@ export type InputText = {
 export type Modal = {
   title: string;
   content: string;
+  position?: Position;
+  width?: string;
   visible?: boolean;
-  confirmLabel: string;
-  confirm: () => void;
+  confirmLabel?: string;
+  confirm?: () => void;
   close: () => void;
 };
+
+type Position =
+  | "center"
+  | "top"
+  | "bottom"
+  | "left"
+  | "right"
+  | "topleft"
+  | "topright"
+  | "bottomleft"
+  | "bottomright"
+  | undefined;
