@@ -14,7 +14,7 @@ const {
 
 <template>
   <HomePageHandleDataModal />
-  <CommonModal
+  <GenericModal
     :data="{
       visible: modalStore.visibleErrorModal,
       position:'top',
@@ -23,7 +23,7 @@ const {
       close: () => setErrorModal(),
     }"
   />
-  <CommonModal
+  <GenericModal
     :data="{
       visible: modalStore.visibleDeleteModal,
       title: 'Deleting',
@@ -36,7 +36,7 @@ const {
   <section class="flex lg:flex-row flex-column m-3 mt-6 mb-6 gap-4">
     <div class="flex flex-column gap-2">
       <label>Keyword</label>
-      <CommonInputText
+      <GenericInputText
         :data="{
           placeholder: 'Search for keyword',
         }"
@@ -56,7 +56,7 @@ const {
 
   <section class="grid m-3 mt-6 mb-6">
     <div class="lg:col-3 col-12" v-for="app in appStore.appList" :key="app.id">
-      <CommonCard
+      <GenericCard
         :data="{
           id: app.id,
           title: app.title,

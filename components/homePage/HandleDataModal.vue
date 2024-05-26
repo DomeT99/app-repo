@@ -16,7 +16,7 @@ const { modalStore, appStore, handleDataModal, addNewApp, editCurrentApp } =
     <div class="grid gap-3">
       <div class="col-12 inline-flex flex-column gap-2">
         <label for="title" class="text-primary-50">Title(*)</label>
-        <CommonInputText
+        <GenericInputText
           v-model="appStore.currentApp.title"
           id="title"
           class="w-full"
@@ -27,7 +27,7 @@ const { modalStore, appStore, handleDataModal, addNewApp, editCurrentApp } =
       </div>
       <div class="col-12 inline-flex flex-column gap-2">
         <label for="description" class="text-primary-50">Description</label>
-        <CommonInputText
+        <GenericInputText
           v-model="appStore.currentApp.description"
           id="title"
           class="w-full"
@@ -38,7 +38,7 @@ const { modalStore, appStore, handleDataModal, addNewApp, editCurrentApp } =
       </div>
       <div class="col-12 inline-flex flex-column gap-2">
         <label for="website" class="text-primary-50">Website</label>
-        <CommonInputText
+        <GenericInputText
           v-model="appStore.currentApp.website"
           id="website"
           class="w-full"
@@ -49,7 +49,7 @@ const { modalStore, appStore, handleDataModal, addNewApp, editCurrentApp } =
       </div>
       <div class="col-12 inline-flex flex-column gap-2">
         <label for="source" class="text-primary-50">Source Code</label>
-        <CommonInputText
+        <GenericInputText
           v-model="appStore.currentApp.repository"
           id="source"
           class="w-full"
@@ -60,7 +60,7 @@ const { modalStore, appStore, handleDataModal, addNewApp, editCurrentApp } =
       </div>
       <div class="col-12 inline-flex flex-column gap-2">
         <label class="text-primary-50">Platforms(*)</label>
-        <CommonComboBox
+        <GenericComboBox
           v-model="appStore.currentApp.platforms"
           style="width: 100% !important"
           :data="{
