@@ -35,9 +35,7 @@ export const useAppComposable = async () => {
     const result = await appStore.deleteApp();
 
     if (result) {
-      appStore.resetState();
-      setStateDeleteModal();
-      await appStore.getAppList();
+      await _handleDataAfterDelete();
     }
   }
 
@@ -47,6 +45,12 @@ export const useAppComposable = async () => {
     } else {
       appStore.setCurrentApp(currentApp!);
     }
+  }
+
+  async function _handleDataAfterDelete() {
+    appStore.resetState();
+    setStateDeleteModal();
+    await appStore.getAppList();
   }
 
   return {
