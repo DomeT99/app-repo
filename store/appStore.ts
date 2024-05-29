@@ -2,6 +2,7 @@ import { defineStore } from "pinia";
 import type { Card, Option } from "~/types/components";
 import type { App } from "~/types/generic";
 import type { Filter } from "~/types/store";
+import { handleResult } from "~/utils/handleResult";
 import { isUndefined, isEmptyString, isEmptyObject } from "~/utils/utility";
 
 export const useAppStore = defineStore("app", () => {
@@ -66,28 +67,23 @@ export const useAppStore = defineStore("app", () => {
   }
 
   async function editApp() {
-    try {
-      let checkForm = _validateForm();
+    let checkForm = _validateForm();
 
-      if (checkForm) {
-        currentAppOriginal.value = {
-          ...currentApp.value,
-          platforms: _setPlatformsKey(
-            currentApp.value.platforms as unknown as Option[]
-          ),
-        };
+    if (checkForm) {
+      currentAppOriginal.value = {
+        ...currentApp.value,
+        platforms: _setPlatformsKey(
+          currentApp.value.platforms as unknown as Option[]
+        ),
+      };
 
-        const { data } = await useFetch("/api/appController/put/app", {
-          method: "PUT",
-          body: currentAppOriginal.value,
-        });
-
-        return data;
-      } else {
-        return checkForm;
-      }
-    } catch (e) {
-      console.log(e);
+      const { data, error } = await useFetch("/api/appController/put/app", {
+        method: "PUT",
+        body: currentAppOriginal.value,
+      });
+      return handleResult(data, error);
+    } else {
+      return checkForm;
     }
   }
 

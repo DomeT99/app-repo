@@ -20,7 +20,7 @@ export const useHandleDataComposable = () => {
     }
   }
 
-  async function editCurrentApp() {
+  async function editCurrentApp() { 
     let result = await appStore.editApp();
 
     if (result) {

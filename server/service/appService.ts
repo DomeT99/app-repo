@@ -67,7 +67,7 @@ export async function tryEditApp(app: App) {
     });
 
     return true;
-  } catch (e) {
-    console.log(e);
+  } catch (error: any) {
+    throw new Error(error);
   }
 }

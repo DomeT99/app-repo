@@ -18,6 +18,13 @@ export const useModalStore = defineStore("modal", () => {
     visibleHandleDataModal.value = !visibleHandleDataModal.value;
   }
 
+  function resetState() {
+    visibleDeleteModal.value = false;
+    visibleHandleDataModal.value = false;
+    visibleErrorModal.value = false;
+    isEditMode.value = false;
+  }
+
   return {
     visibleDeleteModal,
     visibleHandleDataModal,
@@ -26,5 +33,6 @@ export const useModalStore = defineStore("modal", () => {
     handleDeleteModal,
     handleDataModal,
     handleErrorModal,
+    resetState,
   };
 });
