@@ -13,57 +13,46 @@ export const useAppStore = defineStore("app", () => {
   let currentAppOriginal = ref<App>({} as App);
 
   async function getAppList() {
-    try {
-      const { data } = await useFetch("/api/appController/get/list");
+    const { data, error } = await useFetch("/api/appController/get/list");
+    const result = handleResult(data, error);
 
-      data.value?.data.forEach((app: Card) => {
-        _appListOriginal.value.push(app);
-        appList.value.push(app);
-      });
-    } catch (e) {
-      console.log(e);
-    }
+    result.value?.data.forEach((app: Card) => {
+      _appListOriginal.value.push(app);
+      appList.value.push(app);
+    });
   }
 
   async function addApp() {
-    try {
-      let checkForm = _validateForm();
+    let checkForm = _validateForm();
 
-      if (checkForm) {
-        currentAppOriginal.value = {
-          ...currentApp.value,
-          platforms: _setPlatformsKey(
-            currentApp.value.platforms as unknown as Option[]
-          ),
-        };
+    if (checkForm) {
+      currentAppOriginal.value = {
+        ...currentApp.value,
+        platforms: _setPlatformsKey(
+          currentApp.value.platforms as unknown as Option[]
+        ),
+      };
 
-        const { data } = await useFetch("/api/appController/post/app", {
-          method: "POST",
-          body: currentAppOriginal.value,
-        });
+      const { data, error } = await useFetch("/api/appController/post/app", {
+        method: "POST",
+        body: currentAppOriginal.value,
+      });
 
-        return data;
-      } else {
-        return checkForm;
-      }
-    } catch (e) {
-      console.log(e);
+      return handleResult(data, error);
+    } else {
+      return checkForm;
     }
   }
 
   async function deleteApp() {
-    try {
-      const { data } = await useFetch(
-        `/api/appController/delete/${currentApp.value.id}`,
-        {
-          method: "DELETE",
-        }
-      );
+    const { data, error } = await useFetch(
+      `/api/appController/delete/${currentApp.value.id}`,
+      {
+        method: "DELETE",
+      }
+    );
 
-      return data;
-    } catch (e) {
-      console.log(e);
-    }
+    return handleResult(data, error);
   }
 
   async function editApp() {

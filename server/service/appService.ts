@@ -32,16 +32,17 @@ export async function tryGetList(): Promise<App[] | undefined> {
     }
 
     return appList;
-  } catch (e) {
-    console.log(e);
+  } catch (error: any) {
+    throw new Error(error);
   }
 }
 
 export async function tryDeleteApp(id: string) {
   try {
     await deleteDoc(doc(db, `/Application/${id}`));
-  } catch (e) {
-    console.log(e);
+    return true;
+  } catch (error: any) {
+    throw new Error(error);
   }
 }
 
@@ -49,8 +50,8 @@ export async function tryAddApp(app: App) {
   try {
     let result = await addDoc(collection(db, "Application"), app);
     return result.id;
-  } catch (e) {
-    console.log(e);
+  } catch (error: any) {
+    throw new Error(error);
   }
 }
 
