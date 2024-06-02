@@ -9,9 +9,13 @@ import {
 } from "firebase/firestore";
 import { App } from "~/types/generic";
 
+const config = useRuntimeConfig();
+
 export async function tryGetList(): Promise<App[] | undefined> {
   try {
-    const querySnapshot = await getDocs(collection(db, "Application"));
+    const querySnapshot = await getDocs(
+      collection(db, config.public.appCollection as string)
+    );
     let appList: App[] = [];
 
     if (!querySnapshot.empty) {
@@ -39,7 +43,7 @@ export async function tryGetList(): Promise<App[] | undefined> {
 
 export async function tryDeleteApp(id: string) {
   try {
-    await deleteDoc(doc(db, `/Application/${id}`));
+    await deleteDoc(doc(db, `/${config.public.appCollection as string}/${id}`));
     return true;
   } catch (error: any) {
     throw new Error(error);
@@ -48,7 +52,10 @@ export async function tryDeleteApp(id: string) {
 
 export async function tryAddApp(app: App) {
   try {
-    let result = await addDoc(collection(db, "Application"), app);
+    let result = await addDoc(
+      collection(db, config.public.appCollection as string),
+      app
+    );
     return result.id;
   } catch (error: any) {
     throw new Error(error);
@@ -57,7 +64,7 @@ export async function tryAddApp(app: App) {
 
 export async function tryEditApp(app: App) {
   try {
-    let docRef = doc(db, "Application", app.id);
+    let docRef = doc(db, config.public.appCollection as string, app.id);
 
     await updateDoc(docRef, {
       title: app.title,
