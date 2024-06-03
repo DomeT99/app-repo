@@ -1,6 +1,4 @@
-<script setup lang="ts">
-import { useAppComposable } from "~/composables/useAppComposable";
-
+<script setup lang="ts"> 
 const {
   modalStore,
   appStore,

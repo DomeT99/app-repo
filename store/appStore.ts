@@ -1,9 +1,6 @@
-import { defineStore } from "pinia";
 import type { Card, Option } from "~/types/components";
 import type { App } from "~/types/generic";
 import type { Filter } from "~/types/store";
-import { handleResult } from "~/utils/handleResult";
-import { isUndefined, isEmptyString, isEmptyObject } from "~/utils/utility";
 
 export const useAppStore = defineStore("app", () => {
   let _appListOriginal = ref<Card[]>([]);

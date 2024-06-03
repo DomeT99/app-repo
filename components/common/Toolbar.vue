@@ -1,6 +1,3 @@
-<script setup lang="ts">
-import { openLink } from "@/utils/utility";
-</script>
 <template>
   <MegaMenu style="border-radius: 1.5rem">
     <template #start>

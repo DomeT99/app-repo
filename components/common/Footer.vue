@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { openLink } from "@/utils/utility";
-
 const dateNow = computed(() => new Date().getFullYear());
 </script>
 <template>

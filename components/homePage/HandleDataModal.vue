@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { useHandleDataComposable } from "~/composables/useHandleDataComposable";
-
 const { modalStore, appStore, handleDataModal, addNewApp, editCurrentApp } =
   useHandleDataComposable();
 </script>

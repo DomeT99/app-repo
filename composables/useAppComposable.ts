@@ -1,6 +1,5 @@
 import { useAppStore } from "~/store/appStore";
 import { useModalStore } from "~/store/modalStore";
-import type { Card } from "~/types/components";
 import type { App } from "~/types/generic";
 export const useAppComposable = async () => {
   const appStore = useAppStore();

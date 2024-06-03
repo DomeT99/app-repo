@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { type Card } from "../../types/components";
-import { openLink } from "@/utils/utility";
+import { type Card } from "../../types/components"; 
 
 defineProps<{
   data: Card;

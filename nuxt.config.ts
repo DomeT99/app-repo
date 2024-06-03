@@ -24,4 +24,7 @@ export default defineNuxtConfig({
       appCollection: process.env.FIREBASE_APP_COLLECTION,
     },
   },
+  imports: {
+    presets: [{ from: "@pinia/nuxt", imports: ["defineStore"] }],
+  },
 });
