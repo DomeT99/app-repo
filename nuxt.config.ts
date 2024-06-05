@@ -7,7 +7,12 @@ export default defineNuxtConfig({
     },
   },
   devtools: { enabled: true },
-  modules: ["nuxt-primevue", "@pinia/nuxt", "@nuxt/test-utils/module", "@vite-pwa/nuxt"],
+  modules: [
+    "nuxt-primevue",
+    "@pinia/nuxt",
+    "@nuxt/test-utils/module",
+    "@vite-pwa/nuxt",
+  ],
   pwa: {
     manifest: {
       name: "App Repo",
@@ -16,8 +21,28 @@ export default defineNuxtConfig({
       theme_color: "#ffffff",
       icons: [
         {
+          src: "pwa-144x144.png",
+          sizes: "120x120",
+          type: "image/png",
+        },
+        {
+          src: "pwa-144x144.png",
+          sizes: "144x144",
+          type: "image/png",
+        },
+        {
+          src: "pwa-152x152.png",
+          sizes: "152x152",
+          type: "image/png",
+        },
+        {
           src: "pwa-192x192.png",
           sizes: "192x192",
+          type: "image/png",
+        },
+        {
+          src: "pwa-384x384.png",
+          sizes: "384x384",
           type: "image/png",
         },
         {
