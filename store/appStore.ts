@@ -1,6 +1,8 @@
 import type { Card, Option } from "~/types/components";
 import type { App } from "~/types/generic";
 import type { Filter } from "~/types/store";
+//@ts-ignore: only for now
+import { isTrue, isUndefined, isEmptyString, isBlankArray } from "easy-kit-utils";
 
 export const useAppStore = defineStore("app", () => {
   let _appListOriginal = ref<Card[]>([]);
@@ -22,7 +24,7 @@ export const useAppStore = defineStore("app", () => {
   async function addApp() {
     let checkForm = _validateForm();
 
-    if (checkForm) {
+    if (isTrue(checkForm)) {
       currentAppOriginal.value = {
         ...currentApp.value,
         platforms: _setPlatformsKey(
@@ -55,7 +57,7 @@ export const useAppStore = defineStore("app", () => {
   async function editApp() {
     let checkForm = _validateForm();
 
-    if (checkForm) {
+    if (isTrue(checkForm)) {
       currentAppOriginal.value = {
         ...currentApp.value,
         platforms: _setPlatformsKey(
@@ -143,7 +145,7 @@ export const useAppStore = defineStore("app", () => {
   function _validateForm() {
     if (
       isUndefined(currentApp.value.platforms) ||
-      isEmptyArray(currentApp.value.platforms)
+      isBlankArray(currentApp.value.platforms)
     ) {
       return false;
     }

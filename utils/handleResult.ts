@@ -1,6 +1,8 @@
 import type { FirebaseError } from "~/types/error";
+//@ts-ignore: only for now
+import { isTrue } from "easy-kit-utils";
 export function handleResult(data: any, error: any) {
-  if (!error.value) {
+  if (!isTrue(error.value)) {
     return data;
   } else {
     _handleError({

@@ -1,6 +1,9 @@
 import { useAppStore } from "~/store/appStore";
 import { useModalStore } from "~/store/modalStore";
 import type { App } from "~/types/generic";
+//@ts-ignore: only for now
+import { isUndefined } from "easy-kit-utils";
+
 export const useAppComposable = async () => {
   const appStore = useAppStore();
   const modalStore = useModalStore();
