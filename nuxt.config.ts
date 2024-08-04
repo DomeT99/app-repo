@@ -14,7 +14,6 @@ export default defineNuxtConfig({
     "@vite-pwa/nuxt",
   ],
   pwa: {
-    includeAssets: ["favicon.ico", "apple-touch-icon.png", "logo.svg"],
     manifest: {
       name: "App Repo",
       short_name: "App Repo",
@@ -22,8 +21,28 @@ export default defineNuxtConfig({
       theme_color: "#ffffff",
       icons: [
         {
+          src: "pwa-144x144.png",
+          sizes: "120x120",
+          type: "image/png",
+        },
+        {
+          src: "pwa-144x144.png",
+          sizes: "144x144",
+          type: "image/png",
+        },
+        {
+          src: "pwa-152x152.png",
+          sizes: "152x152",
+          type: "image/png",
+        },
+        {
           src: "pwa-192x192.png",
           sizes: "192x192",
+          type: "image/png",
+        },
+        {
+          src: "pwa-384x384.png",
+          sizes: "384x384",
           type: "image/png",
         },
         {
@@ -31,7 +50,21 @@ export default defineNuxtConfig({
           sizes: "512x512",
           type: "image/png",
         },
+        {
+          src: "pwa-512x512.png",
+          sizes: "512x512",
+          type: "image/png",
+          purpose: "maskable",
+        },
       ],
+    },
+    workbox: {
+      navigateFallback: "/pages/index.vue",
+    },
+    registerType: "autoUpdate",
+    devOptions: {
+      enabled: true,
+      type: "module",
     },
   },
   css: [
