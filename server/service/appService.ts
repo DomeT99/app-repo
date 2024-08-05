@@ -19,18 +19,20 @@ export async function tryGetList(): Promise<App[] | undefined> {
     let appList: App[] = [];
 
     if (!querySnapshot.empty) {
-      const promises = querySnapshot.docs.map(async (doc: any) => {
-        let app: App = {
-          id: doc.id,
-          title: doc.data().title,
-          platforms: doc.data().platforms,
-          description: doc.data().description,
-          website: doc.data().website,
-          repository: doc.data().repository,
-        };
+      const promises = querySnapshot.docs
+        .sort((a, b) => ("" + a.data().title).localeCompare(b.data().title))
+        .map(async (doc: any) => {
+          let app: App = {
+            id: doc.id,
+            title: doc.data().title,
+            platforms: doc.data().platforms,
+            description: doc.data().description,
+            website: doc.data().website,
+            repository: doc.data().repository,
+          };
 
-        appList.push(app);
-      });
+          appList.push(app);
+        });
 
       await Promise.all(promises);
     }
