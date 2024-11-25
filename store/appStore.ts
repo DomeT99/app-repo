@@ -1,8 +1,14 @@
 import type { Card, Option } from "~/types/components";
 import type { App } from "~/types/generic";
 import type { Filter } from "~/types/store";
-//@ts-ignore: only for now
-import { isTrue, isUndefined, isEmptyString, isBlankArray } from "easy-kit-utils";
+import {
+  isTrue,
+  isUndefined,
+  isEmptyString,
+  isBlankArray,
+  isNull,
+  /// @ts-ignore
+} from "easy-kit-utils";
 
 export const useAppStore = defineStore("app", () => {
   let _appListOriginal = ref<Card[]>([]);
@@ -114,8 +120,15 @@ export const useAppStore = defineStore("app", () => {
   }
 
   function _searchApp() {
-    appList.value = _appListOriginal.value.filter((x) =>
-      x.title.toLowerCase().includes(filters.value.keyword!.toLowerCase())
+    appList.value = _appListOriginal.value.filter(
+      (x) =>
+        x.title.toLowerCase().includes(filters.value.keyword!.toLowerCase()) ||
+        (!isNull(x.description) &&
+          !isUndefined(x.description) &&
+          !isEmptyString(x.description) &&
+          x.description
+            .toLowerCase()
+            .includes(filters.value.keyword!.toLowerCase()))
     );
   }
 
