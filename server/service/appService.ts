@@ -29,6 +29,7 @@ export async function tryGetList(): Promise<App[] | undefined> {
             description: doc.data().description,
             website: doc.data().website,
             repository: doc.data().repository,
+            isActive : doc.data().isActive,
           };
 
           appList.push(app);

@@ -62,6 +62,7 @@ const {
           platforms: app.platforms,
           website: app.website,
           repository: app.repository,
+          isActive: app.isActive,
           deleteFn: () => setStateDeleteModal(app),
           editFn: () => setStateHandleDataModal(app),
         }"

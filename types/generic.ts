@@ -5,4 +5,5 @@ export type App = {
   description: string;
   website?: string;
   repository?: string;
+  isActive?: boolean;
 };

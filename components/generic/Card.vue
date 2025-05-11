@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { type Card } from "../../types/components"; 
+import { type Card } from "../../types/components";
 
 defineProps<{
   data: Card;
@@ -13,6 +13,11 @@ defineProps<{
         <div class="flex-1">{{ data.title }}</div>
         <div>
           <i class="pi pi-pencil cursor-pointer" @click="data.editFn!()"></i>
+          &nbsp;
+          <i
+            class="pi pi-check cursor-pointer"
+            @click="data.handleStatus!()"
+          ></i>
           &nbsp;
           <i
             class="pi pi-trash text-red-600 cursor-pointer"

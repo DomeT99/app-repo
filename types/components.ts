@@ -2,6 +2,7 @@ import type { App } from "./generic";
 export type Card = App & {
   deleteFn?: () => void;
   editFn?: () => void;
+  handleStatus?: () => void;
 };
 
 export type ComboBox = {
