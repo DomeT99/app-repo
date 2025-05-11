@@ -1,4 +1,4 @@
-<script setup lang="ts"> 
+<script setup lang="ts">
 const {
   modalStore,
   appStore,
@@ -6,7 +6,8 @@ const {
   setStateDeleteModal,
   deleteApplication,
   setStateHandleDataModal,
-  setErrorModal
+  setErrorModal,
+  setStateHandleStatusModal
 } = await useAppComposable();
 </script>
 
@@ -15,7 +16,7 @@ const {
   <GenericModal
     :data="{
       visible: modalStore.visibleErrorModal,
-      position:'top',
+      position: 'top',
       title: 'Warning',
       content: `Fields marked with an asterisk are required`,
       close: () => setErrorModal(),
@@ -23,14 +24,24 @@ const {
   />
   <GenericModal
     :data="{
-      visible: modalStore.visibleDeleteModal,
-      title: 'Deleting',
-      content: `Are you sure you want to delete ${appStore.currentApp.title}?`,
-      confirmLabel: 'Delete',
-      confirm: async () => await deleteApplication(),
-      close: () => setStateDeleteModal(),
+      visible: modalStore.visibleHandleStatusModal,
+      title: 'Deactivation',
+      content: `Are you sure you want to deactive ${appStore.currentApp.title}?`,
+      confirmLabel: 'Deactive',
+      close: () => setStateHandleStatusModal(),
+      confirm: () => setStateHandleStatusModal(),
     }"
   />
+  <GenericModal
+  :data="{
+    visible: modalStore.visibleDeleteModal,
+    title: 'Deleting',
+    content: `Are you sure you want to delete ${appStore.currentApp.title}?`,
+    confirmLabel: 'Delete',
+    confirm: async () => await deleteApplication(),
+    close: () => setStateDeleteModal(),
+  }"
+/>
   <section class="flex lg:flex-row flex-column m-3 mt-6 mb-6 gap-4">
     <div class="flex flex-column gap-2">
       <label>Keyword</label>
@@ -65,6 +76,7 @@ const {
           isActive: app.isActive,
           deleteFn: () => setStateDeleteModal(app),
           editFn: () => setStateHandleDataModal(app),
+          handleStatus: () => setStateHandleStatusModal(app),
         }"
       />
     </div>

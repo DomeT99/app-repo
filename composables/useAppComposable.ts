@@ -29,6 +29,12 @@ export const useAppComposable = async () => {
     _setCurrentApp(currentApp);
   }
 
+  function setStateHandleStatusModal(currentApp?: App){ 
+    modalStore.handleStatusModal();
+
+    _setCurrentApp(currentApp);
+  }
+
   function setErrorModal() {
     modalStore.handleErrorModal();
   }
@@ -60,6 +66,7 @@ export const useAppComposable = async () => {
     setStateDeleteModal,
     deleteApplication,
     setStateHandleDataModal,
+    setStateHandleStatusModal,
     setErrorModal,
     modalStore,
     appStore,

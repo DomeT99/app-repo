@@ -2,6 +2,7 @@ export const useModalStore = defineStore("modal", () => {
   let visibleDeleteModal = ref<boolean>(false);
   let visibleHandleDataModal = ref<boolean>(false);
   let visibleErrorModal = ref<boolean>(false);
+  let visibleHandleStatusModal = ref<boolean>(false);
   let isEditMode = ref<boolean>(false);
 
   function handleDeleteModal() {
@@ -17,6 +18,10 @@ export const useModalStore = defineStore("modal", () => {
     visibleHandleDataModal.value = !visibleHandleDataModal.value;
   }
 
+  function handleStatusModal() {
+    visibleHandleStatusModal.value = !visibleHandleStatusModal.value;
+  }
+
   function resetState() {
     visibleDeleteModal.value = false;
     visibleHandleDataModal.value = false;
@@ -29,9 +34,11 @@ export const useModalStore = defineStore("modal", () => {
     visibleHandleDataModal,
     visibleErrorModal,
     isEditMode,
+    visibleHandleStatusModal,
     handleDeleteModal,
     handleDataModal,
     handleErrorModal,
+    handleStatusModal,
     resetState,
   };
 });
