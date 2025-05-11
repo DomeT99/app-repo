@@ -29,7 +29,7 @@ export async function tryGetList(): Promise<App[] | undefined> {
             description: doc.data().description,
             website: doc.data().website,
             repository: doc.data().repository,
-            isActive : doc.data().isActive,
+            isActive: doc.data().isActive,
           };
 
           appList.push(app);
@@ -77,6 +77,14 @@ export async function tryEditApp(app: App) {
       repository: app.repository,
     });
 
+    return true;
+  } catch (error: any) {
+    throw new Error(error);
+  }
+}
+
+export async function tryEditAppStatus(app: App) {
+  try {
     return true;
   } catch (error: any) {
     throw new Error(error);

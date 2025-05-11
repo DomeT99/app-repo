@@ -28,8 +28,8 @@ const {
       title: 'Deactivation',
       content: `Are you sure you want to deactive ${appStore.currentApp.title}?`,
       confirmLabel: 'Deactive',
-      close: () => setStateHandleStatusModal(),
       confirm: () => setStateHandleStatusModal(),
+      close: () => setStateHandleStatusModal(),
     }"
   />
   <GenericModal

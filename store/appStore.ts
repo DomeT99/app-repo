@@ -81,6 +81,8 @@ export const useAppStore = defineStore("app", () => {
     }
   }
 
+  async function editAppStatus() {}
+
   function setCurrentApp(app: App) {
     if (isEmptyObject(app)) {
       currentApp.value = app;
