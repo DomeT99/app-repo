@@ -14,11 +14,11 @@ defineProps<{
         <div>
           <i class="pi pi-pencil cursor-pointer" @click="data.editFn!()"></i>
           &nbsp;
-          <i
+          <!-- <i
             class="pi pi-check cursor-pointer"
             @click="data.handleStatus!()"
           ></i>
-          &nbsp;
+          &nbsp; -->
           <i
             class="pi pi-trash text-red-600 cursor-pointer"
             @click="data.deleteFn!()"
