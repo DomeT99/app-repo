@@ -65,7 +65,6 @@ This is a Nuxt.js/Vue.js application with the following main structure:
 - Vue.js
 - TypeScript
 - Firebase
-- PrimeVue (for UI components)
 
 ### Important Commands
 - `pnpm run dev`: Start development environment
