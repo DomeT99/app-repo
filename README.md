@@ -1,19 +1,75 @@
-# App Repo 📦
+# Nuxt Minimal Starter
 
-App Repo is a simple web app build with [Nuxt](https://nuxt.com/) and [Prime Vue](https://primevue.org/) for store your favourite app and software in a cloud solution based on [Firebase](https://firebase.google.com/) ☁️
+Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
 
+## Setup
 
-## Contributing
+Make sure to install dependencies:
 
-This application is born as a playground to learn [Nuxt](https://nuxt.com/), if you're learning it too, feel free to contribute!
+```bash
+# npm
+npm install
 
-All instructions can be found in the [CONTRIBUTING.md](CONTRIBUTING.md) file.
+# pnpm
+pnpm install
 
-## Support 
+# yarn
+yarn install
 
-If you like this project, you can support me with a very small donation. 
-<br/>
-I would be grateful 🥹
-<br/>
-<br/>
- <a href="https://www.buymeacoffee.com/domenicotenace" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
+# bun
+bun install
+```
+
+## Development Server
+
+Start the development server on `http://localhost:3000`:
+
+```bash
+# npm
+npm run dev
+
+# pnpm
+pnpm dev
+
+# yarn
+yarn dev
+
+# bun
+bun run dev
+```
+
+## Production
+
+Build the application for production:
+
+```bash
+# npm
+npm run build
+
+# pnpm
+pnpm build
+
+# yarn
+yarn build
+
+# bun
+bun run build
+```
+
+Locally preview production build:
+
+```bash
+# npm
+npm run preview
+
+# pnpm
+pnpm preview
+
+# yarn
+yarn preview
+
+# bun
+bun run preview
+```
+
+Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
