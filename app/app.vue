@@ -1,1 +1,3 @@
-<template></template>
+<template>
+    <v-app> </v-app>
+</template>
